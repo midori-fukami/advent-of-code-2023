@@ -7,3 +7,4 @@ Console.WriteLine("Hello, World!");
 //day_02.part2();
 //day_03.part2();
 //day_04.part2();
+day_05.part1();
