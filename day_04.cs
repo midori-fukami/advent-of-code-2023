@@ -2,6 +2,45 @@
 {
     public static class day_04
     {
+        public static void part2()
+        {
+            var dic = new Dictionary<int, int>();
+            var input = getInput();
+            var sumLine = 0;
+            var result = 0;
+            for (int i = 0; i < input.Count(); i++)
+            {
+                var lineSplit = input[i].Split("|").ToList();
+                var winning = lineSplit[0].Trim().Split(" ").ToList();
+                var myNumber = lineSplit[1].Trim().Split(" ").ToList();
+
+                int aux = i;
+                for (int j = 0; j < winning.Count(); j++)
+                {                    
+                    if (!string.IsNullOrEmpty(winning[j]) && myNumber.Any(o => o == winning[j]))
+                    {
+                        aux++;
+                        if (sumLine == 0)
+                            sumLine = 1;
+                        else
+                            sumLine *= 2;
+                        
+                        if (!dic.ContainsKey(aux))
+                            dic.Add(aux, 2);
+                        else
+                            dic[aux]++;
+                    }
+                }
+                if(dic.ContainsKey(i) && sumLine != 0)
+                {
+                    sumLine *= dic[i];
+                }
+
+                result += sumLine;
+                sumLine = 0;
+            }
+            Console.WriteLine(result);
+        }
         public static void part1()
         {
             var input = getInput();
